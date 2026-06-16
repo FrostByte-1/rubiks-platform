@@ -11,13 +11,21 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Rubik's Cube Platform API")
 
+import re
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware as StarletteCORS
+
+# List your exact known origins, plus handle Vercel preview URLs
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://rubiks-platform-git-main-nirupams-projects-88829487.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "https://rubiks-platform-iqtbt1mi7-nirupams-projects-88829487.vercel.app",  # replace with your actual Vercel URL
-    ],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://rubiks-platform.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
