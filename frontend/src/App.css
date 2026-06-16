@@ -1,0 +1,433 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ── Nav ──────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 28px;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav h1 {
+  font-size: 19px;
+  margin-right: 12px;
+  font-weight: 800;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+.nav a {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav a:hover { color: var(--text); background: var(--card-bg); }
+.nav a.active {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+}
+
+/* ── Page ─────────────────────────────────────────────── */
+.page {
+  flex: 1;
+  padding: 24px 28px 32px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: pagein 0.18s ease;
+}
+@keyframes pagein {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page h2 {
+  margin-bottom: 6px;
+  font-size: 26px;
+  font-weight: 800;
+}
+.page > p, .page > div > p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ── 3D Canvas ────────────────────────────────────────── */
+.cube-canvas {
+  width: 100%;
+  height: 500px;
+  background: var(--canvas-bg);
+  border-radius: 18px;
+  border: 1px solid var(--card-border);
+  box-shadow:
+    inset 0 0 80px var(--canvas-glow-1),
+    0 12px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Layout helpers ───────────────────────────────────── */
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.controls button { min-width: 60px; }
+
+.row { display: flex; gap: 20px; flex-wrap: wrap; }
+.col { flex: 1; min-width: 280px; }
+
+/* ── Card ─────────────────────────────────────────────── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+}
+
+/* ── Move lists ───────────────────────────────────────── */
+.move-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.move-list span {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+.move-list span.current {
+  background: var(--accent-grad);
+  color: #fff;
+  border: none;
+}
+.move-list span.done {
+  background: var(--card-bg);
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* ── Timer ────────────────────────────────────────────── */
+.timer-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 64px;
+  text-align: center;
+  padding: 20px 0;
+  letter-spacing: 2px;
+  color: var(--timer-color);
+  text-shadow: var(--timer-glow);
+  font-weight: 700;
+}
+
+/* ── Leaderboard ──────────────────────────────────────── */
+.leaderboard table { width: 100%; border-collapse: collapse; }
+.leaderboard th, .leaderboard td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 14px;
+}
+.leaderboard th {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.leaderboard tr.me td { color: var(--accent); font-weight: 600; }
+
+/* ── Color grid (Scan & Solve) ────────────────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 38px);
+  gap: 4px;
+}
+.color-grid div {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--card-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.color-grid div:hover { transform: scale(1.08); border-color: var(--accent); }
+
+.color-picker { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.color-picker div {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--card-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.color-picker div:hover { transform: scale(1.1); }
+.color-picker div.active { border-color: var(--text); transform: scale(1.05); }
+
+.face-grids {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 20px;
+  justify-content: start;
+  margin-top: 14px;
+}
+.face-grids .face-label {
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Auth form ────────────────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+}
+.auth-form input { width: 100%; }
+.auth-form .tabs { display: flex; gap: 8px; }
+.auth-form .tabs button { flex: 1; }
+.auth-form .tabs button.active {
+  background: var(--accent-grad);
+  color: #fff;
+  border: none;
+}
+.auth-form .err { color: var(--danger); font-size: 13px; }
+
+/* ── Settings panel ───────────────────────────────────── */
+.settings-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+.settings-panel {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 360px;
+  max-width: 92vw;
+  background: var(--card-bg);
+  border-left: 1px solid var(--card-border);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 101;
+  padding: 24px;
+  overflow-y: auto;
+  animation: slidein 0.25s ease;
+}
+@keyframes slidein {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.settings-panel h3 { font-size: 20px; margin-bottom: 20px; }
+.settings-panel h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 22px 0 10px;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+.settings-panel .close-btn {
+  position: absolute;
+  top: 18px; right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text-muted);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.settings-panel .close-btn:hover { background: var(--input-bg); color: var(--text); transform: none; }
+.theme-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.theme-row button {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13px;
+  height: auto;
+  line-height: 1.4;
+}
+.theme-row button.active {
+  background: var(--accent-grad);
+  color: #fff;
+  border: none;
+}
+.face-color-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.face-color-row label {
+  font-size: 13px;
+  width: 56px;
+  color: var(--text-muted);
+}
+.face-color-row input[type="color"] {
+  width: 48px;
+  height: 30px;
+  padding: 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--card-border);
+  background: transparent;
+}
+
+.settings-gear {
+  margin-left: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  transition: transform 0.4s, border-color 0.2s;
+}
+.settings-gear:hover { transform: rotate(60deg); border-color: var(--accent); }
+
+/* ── Animated background ──────────────────────────────── */
+.bg-anim {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.petal {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 50% 30%, #ffd0e0 0%, #ff9ab8 70%, transparent 100%);
+  border-radius: 100% 0 100% 0;
+  opacity: 0.7;
+  will-change: transform;
+  animation: petalfall linear infinite;
+}
+@keyframes petalfall {
+  0%   { transform: translate(0, -10vh) rotate(0deg); }
+  100% { transform: translate(60px, 110vh) rotate(540deg); }
+}
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  box-shadow: 0 0 8px var(--accent);
+  will-change: transform, opacity;
+  animation: drift linear infinite;
+}
+@keyframes drift {
+  0%   { transform: translate(0, 100vh) scale(0.5); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translate(40px, -10vh) scale(1.2); opacity: 0; }
+}
+
+/* ── Stage cards (Scan & Solve LBL) ──────────────────── */
+.stage-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(var(--card-blur));
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.stage-card.active {
+  border-color: var(--accent);
+  box-shadow: var(--accent-glow);
+}
+.stage-card.done { opacity: 0.6; }
+.stage-card .stage-label {
+  display: inline-block;
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.stage-card .stage-description {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* ── Solver dropdown ──────────────────────────────────── */
+.solver-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.solver-controls label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.solver-controls select { padding: 7px 12px; font-size: 13px; }
+
+/* ── Quit & Learn button ──────────────────────────────── */
+.quit-learn-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ffa36b);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4);
+}
+.quit-learn-btn:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: 0 6px 24px rgba(255, 107, 107, 0.55);
+}
