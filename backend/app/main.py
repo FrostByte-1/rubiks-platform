@@ -16,6 +16,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://rubiks-platform-iqtbt1mi7-nirupams-projects-88829487.vercel.app",  # replace with your actual Vercel URL
     ],
     allow_credentials=True,
     allow_methods=["*"],
