@@ -1,6 +1,6 @@
 # Rubik's Cube Platform — Frontend
 
-React + Vite single-page app. See `CODEBASE.md` at the project root for full architecture notes.
+React +  Vite single-page app. See `CODEBASE.md` at the project root for full architecture notes.
 
 ## Quick start
 

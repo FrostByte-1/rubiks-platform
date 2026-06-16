@@ -12,7 +12,7 @@ build/
 # Kociemba solver pre-computed lookup tables (auto-generated on first run, ~70 MB)
 backend/twophase/
 
-# Virtual environment
+#  Virtual environment
 venv/
 env/
 .venv/
