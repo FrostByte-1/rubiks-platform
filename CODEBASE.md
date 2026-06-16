@@ -32,7 +32,7 @@ rubiks-platform/
 | Styling | Vanilla CSS with CSS custom properties (no Tailwind) |
 | Routing | React Router v6 |
 | Backend framework | FastAPI (Python 3.11+) |
-| ASGI server | Uvicorn |
+| ASGI server | Uvicorn  | 
 | Database | SQLite (local dev) / PostgreSQL (production via env var) |
 | ORM | SQLAlchemy |
 | Auth | JWT (python-jose) + bcrypt password hashing (passlib) |
