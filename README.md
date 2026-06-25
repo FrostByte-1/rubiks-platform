@@ -8,7 +8,7 @@ A full-stack web app to **play, scan, and solve** a Rubik's Cube in your browser
 
 - **🎮 Interactive 3D Cube** — A fully rendered Three.js cube you control with the keyboard (`U R F D L B`, hold Shift for prime moves) or drag to rotate.
 - **📷 Scan a Real Cube (OpenCV)** — Upload one photo per face and the backend detects every sticker color automatically using a computer-vision pipeline (contour detection + HSV/LAB color classification).
-- **🧠 Two Solvers** — *Quick* mode (Kociemba two-phase, near-optimal) and *Layer-by-Layer* mode (beginner-friendly, broken into Cross → F2L → OLL → PLL stages).
+- **🧠 Solver** — *Quick* mode (Kociemba two-phase, near-optimal)
 - **⏱️ Speedcubing Arena** — Get a random scramble, solve against a live timer, and submit your time to a leaderboard.
 - **📚 Learn Page** — Notation cheat-sheet and five solving methods (Beginner LBL, CFOP, Roux, ZZ, Petrus).
 - **🎨 Themes & Customization** — Four themes (Neo, Sakura, Classy, Arctic), cube style options, and per-face color pickers.
