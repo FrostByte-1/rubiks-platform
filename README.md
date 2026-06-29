@@ -1,6 +1,6 @@
 # 🧩 Rubik's Cube Platform
 
-A full-stack web app to **play, scan, and solve** a Rubik's Cube in your browser — featuring an interactive 3D cube, a computer-vision scanner that reads a real cube from photos, two solving engines, a speedcubing arena with a live leaderboard, and a learn section.
+A full-stack web app to **play, scan, and solve** a Rubik's Cube in your browser — featuring an interactive 3D cube, a computer-vision scanner that reads a real cube from photos, two solving engines, a speedcubing arena with a live leaderboard, and a learn section. Website : https://rubiks-platform.vercel.app/
 
 ---
 
