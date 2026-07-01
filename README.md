@@ -58,20 +58,6 @@ Upload photo of a face
 
 ---
 
-## 🚀 Running Locally
-
-### Backend
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # macOS/Linux
-pip install -r requirements.txt
-cp .env.example .env
-# Edit .env: set a real JWT_SECRET (any long random string)
-uvicorn app.main:app --reload --port 5000
-```
-
 ### Frontend
 ```bash
 cd frontend
