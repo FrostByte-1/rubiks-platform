@@ -58,18 +58,6 @@ Upload photo of a face
 
 ---
 
-### Frontend
-```bash
-cd frontend
-npm install
-cp .env.example .env
-# Set VITE_API_URL to your backend URL (e.g. http://localhost:5000)
-npm run dev
-# Open http://localhost:5173
-```
-
----
-
 ## 🌐 Deployment Notes
 
 - **Frontend (Vercel):** Root Directory is set to `frontend`. SPA routing is handled by `frontend/vercel.json` rewriting all paths to `/index.html` so React Router works on refresh.
